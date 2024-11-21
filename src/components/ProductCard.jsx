@@ -1,6 +1,6 @@
 const ProductCard = () => {
   return (
-    <div className="card bg-base-100  shadow-xl">
+    <div className="card bg-[#EDE9E9]  shadow-xl">
       <figure>
         <img
           src="/register.avif"

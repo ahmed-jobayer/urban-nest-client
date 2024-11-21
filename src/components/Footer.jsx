@@ -3,7 +3,7 @@ import { FiFacebook, FiYoutube } from "react-icons/fi";
 
 const Footer = () => {
   return (
-    <footer className="footer container mx-auto text-neutral-content p-10 max-w-5xl mt-2">
+    <footer className="footer container mx-auto text-white p-10 max-w-5xl mt-2">
       <aside className="flex items-center">
         <img className="w-1/12 rounded-lg" src="/public/logo.png" />
         <div>

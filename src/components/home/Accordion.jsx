@@ -1,9 +1,9 @@
 const Accordion = () => {
   return (
-    <div className="my-10 ">
+    <div className="my-10  ">
       <h2 className="text-3xl border-b-2 pb-2 mb-6">FAQs</h2>
       <div className="flex flex-col gap-2">
-        <div className="collapse collapse-arrow bg-base-200">
+        <div className="collapse collapse-arrow bg-[#EDE9E9]">
           <input type="radio" name="my-accordion-2" defaultChecked />
           <div className="collapse-title text-xl font-medium">
             Can I customize the furniture before purchasing?
@@ -17,7 +17,7 @@ const Accordion = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-arrow bg-base-200">
+        <div className="collapse collapse-arrow bg-[#EDE9E9]">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title text-xl font-medium">
             What is your return policy for furniture items?
@@ -32,7 +32,7 @@ const Accordion = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-arrow bg-base-200">
+        <div className="collapse collapse-arrow bg-[#EDE9E9]">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title text-xl font-medium">
             Do you offer assembly services for furniture?

@@ -3,7 +3,7 @@ const ProductDetailsCard = () => {
     <div className="bg-[#EDE9E9]">
       <div className="container mx-auto py-12 px-4">
         <div className="grid grid-cols-12 gap-6 lg:gap-12">
-          {/* image section*/}
+          {/* image */}
           <div className="col-span-12 lg:col-span-7 order-1 lg:order-none">
             <div className="w-full h-auto border rounded-lg overflow-hidden">
               <img
@@ -14,8 +14,8 @@ const ProductDetailsCard = () => {
             </div>
           </div>
 
-          {/* details section */}
-          <div className="col-span-12 lg:col-span-5 order-2 lg:order-none flex flex-col gap-6">
+          {/* details  */}
+          <div className="col-span-12 lg:col-span-5 flex flex-col gap-6">
             {/* brand */}
             <div>
               <h3 className="text-gray-500 text-sm uppercase tracking-wider">
