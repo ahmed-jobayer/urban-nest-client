@@ -58,37 +58,37 @@ const Sidebar = () => {
         <span className="font-bold">Urban</span>Nest
       </h1>
       <ul className="flex flex-col gap-4 h-full ">
-        <li className="btn btn-outline btn-sm bg-[#5E5449] text-white border-none">
+        <li className="btn btn-outline  bg-[#5E5449] text-white border-none">
           <IoHomeOutline className="text-xl" />
           <NavLink to="/"> Home</NavLink>
         </li>
-        <li className="btn btn-outline btn-sm bg-[#5E5449] text-white border-none">
+        <li className="btn btn-outline  bg-[#5E5449] text-white border-none">
           <GrOverview className="text-xl" />
           <NavLink to="/dashboard/overview">Overview</NavLink>
         </li>
         {userData.role === "seller" &&
           userRoutes.map((route) => (
-            <li key={route.id} className="btn btn-outline btn-sm bg-[#5E5449] text-white border-none">
+            <li key={route.id} className="btn btn-outline  bg-[#5E5449] text-white border-none">
               {route.icon}
               <NavLink to={route.route}> {route.title}</NavLink>
             </li>
           ))}
         {userData.role === "seller" &&
           sellerRoutes.map((route) => (
-            <li key={route.id} className="btn btn-outline btn-sm bg-[#5E5449] text-white border-none">
+            <li key={route.id} className="btn btn-outline  bg-[#5E5449] text-white border-none">
               {route.icon}
               <NavLink to={route.route}> {route.title}</NavLink>
             </li>
           ))}
         {userDataA.role === "admin" &&
           adminRoutes.map((route) => (
-            <li key={route.id} className="btn btn-outline btn-sm bg-[#5E5449] text-white border-none">
+            <li key={route.id} className="btn btn-outline  bg-[#5E5449] text-white border-none">
               {route.icon}
               <NavLink to={route.route}> {route.title}</NavLink>
             </li>
           ))}
 
-        <li className="btn btn-outline btn-sm bg-[#5E5449] text-white border-none" onClick={() => LogOut()}>
+        <li className="btn btn-outline  bg-[#5E5449] text-white border-none" onClick={() => LogOut()}>
           <BiLogOut className="text-xl" />
           <button>Logout</button>
         </li>
