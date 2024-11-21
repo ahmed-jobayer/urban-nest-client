@@ -3,6 +3,7 @@ import FeaturedProducts from "../components/home/FeaturedProducts";
 import Hero from "../components/home/Hero";
 import Testimonials from "../components/home/Testimonials";
 import Categories from "../components/home/Categories";
+import Accordion from "../components/home/Accordion";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
         <FeaturedProducts />
         <Categories/>
         <Testimonials/>
+        <Accordion/>
       </div>
     </div>
   );
