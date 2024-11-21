@@ -88,7 +88,7 @@ const Login = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-1/2 btn btn-sm text-white bg-[#5E5449] hover:bg-[#4A3137] border-none"
+                className="w-full btn btn-sm text-white bg-[#5E5449] hover:bg-[#4A3137] border-none"
               >
                 Login
               </button>
@@ -102,7 +102,7 @@ const Login = () => {
             {/* to login */}
             <p className="text-sm text-center mt-4">
               Do not have an account?{" "}
-              <Link to="/login" className="text-blue-500 hover:underline">
+              <Link to="/register" className="text-blue-500 hover:underline">
                 Register here
               </Link>
             </p>

@@ -1,4 +1,4 @@
-import {  NavLink } from "react-router-dom";
+import {  Link, NavLink } from "react-router-dom";
 import UserDropdown from "./UserDropdown";
 import { RiMenu2Fill } from "react-icons/ri";
 import { LuShoppingCart } from "react-icons/lu";
@@ -35,7 +35,7 @@ const Navbar = () => {
             {pages}
           </ul>
         </div>
-        <h2 className=" text-2xl"><span className="font-bold">Urban</span>Nest</h2>
+        <Link to='/'><h2 className=" text-2xl"><span className="font-bold">Urban</span>Nest</h2></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{pages}</ul>
