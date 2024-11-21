@@ -7,6 +7,8 @@ import ContuctUs from "../pages/ContuctUs";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import ProductDetailsCard from "../components/ProductDetailsCard";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Overview from "../pages/dashboard/Overview";
 
 export const router = createBrowserRouter([
   {
@@ -43,4 +45,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/dashboard',
+    element: <DashboardLayout/>,
+    children: [
+      {
+        path: '/dashboard/overview',
+        element: <Overview/>
+      },
+    ]
+  }
 ]);

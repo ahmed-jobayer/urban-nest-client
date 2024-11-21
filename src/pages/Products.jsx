@@ -14,9 +14,9 @@ const Products = () => {
       <div className="container mx-auto ">
         <h1 className="py-6 text-center text-3xl">All Products</h1>
         {/* content and filter bar */}
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 gap-4 py-8">
             {/* filterbar */}
-          <div className="col-span-2">
+          <div className="col-span-2 ">
           <FilterBar />
           </div>
           {/* product, searchbar and price sorting */}
@@ -27,7 +27,7 @@ const Products = () => {
               <SortByPrice />
             </div>
             {/* all products */}
-            <div className="min-h-screen mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="min-h-screen mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4 ">
                 <ProductCard/>
                 <ProductCard/>
                 <ProductCard/>

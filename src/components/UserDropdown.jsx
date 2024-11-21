@@ -22,7 +22,7 @@ const UserDropdown = () => {
           <Link to="/dashboard/overview">Dashboard</Link>
         </li>
         <li className=" btn btn-outline bg-[#5E5449] hover:bg-[#4A3137] btn-sm text-white">
-          <button >Logout</button>
+          <button>Logout</button>
         </li>
       </ul>
     </div>
