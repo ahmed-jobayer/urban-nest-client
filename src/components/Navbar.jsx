@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import UserDropdown from "./UserDropdown";
 import { RiMenu2Fill } from "react-icons/ri";
 import { LuShoppingCart } from "react-icons/lu";
@@ -50,16 +50,16 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="flex gap-2 items-center">
-          <Link to="login">
+          <NavLink to="login">
             <button className="btn btn-sm text-white bg-[#5E5449] hover:bg-[#4A3137] border-none">
               Login
             </button>
-          </Link>
-          <Link to="/register">
+          </NavLink>
+          <NavLink to="/register">
             <button className="btn btn-sm text-white bg-[#5E5449] hover:bg-[#4A3137] border-none">
               Register
             </button>
-          </Link>
+          </NavLink>
         </div>
       </div>
     </div>
