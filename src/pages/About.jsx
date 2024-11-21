@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const About = () => {
     return (
-      <div className="min-h-screen bg-gray-50 text-gray-800">
+      <div className="min-h-screen bg-[#EDE9E9] text-gray-800">
+        <Helmet>
+            <title>About - UrbanNest</title>
+        </Helmet>
         <div className="container mx-auto py-16 px-6">
           <h1 className="text-4xl font-bold text-center mb-6">About Us</h1>
           <p className="text-lg text-center mb-12">
