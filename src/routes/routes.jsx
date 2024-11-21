@@ -9,6 +9,11 @@ import Login from "../pages/Login";
 import ProductDetailsCard from "../components/ProductDetailsCard";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Overview from "../pages/dashboard/Overview";
+import ManageUsers from "../pages/dashboard/admin/ManageUsers";
+import Wishlist from "../pages/dashboard/user/Wishlist";
+import Cart from "../pages/dashboard/user/Cart";
+import MyProducts from "../pages/dashboard/seller/MyProducts";
+import AddProducts from "../pages/dashboard/seller/AddProducts";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +57,26 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/overview',
         element: <Overview/>
+      },
+      {
+        path: '/dashboard/wishlist',
+        element: <Wishlist/>
+      },
+      {
+        path: '/dashboard/cart',
+        element: <Cart/>
+      },
+      {
+        path: '/dashboard/my-products',
+        element: <MyProducts/>
+      },
+      {
+        path: '/dashboard/add-products',
+        element: <AddProducts/>
+      },
+      {
+        path: '/dashboard/manage-users',
+        element: <ManageUsers/>
       },
     ]
   }
