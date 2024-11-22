@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer container mx-auto text-white p-10 max-w-5xl mt-2">
       <aside className="flex items-center">
-        <img className="w-1/12 rounded-lg" src="/public/logo.png" />
+        <img className="w-1/12 rounded-lg" src="/logo.png" />
         <div>
         <h2 className=" text-2xl">
           <span className="font-bold">Urban</span>Nest
@@ -15,7 +15,7 @@ const Footer = () => {
       </aside>
       <nav>
         <h6 className="footer-title text-xl">Social</h6>
-        <div className="flex gap-6 text-3xl">
+        <div className="flex gap-6 text-3xl"> 
         <FaXTwitter />
         <FiYoutube />
         <FiFacebook />

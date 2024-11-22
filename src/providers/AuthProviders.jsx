@@ -21,7 +21,7 @@ const AuthProviders = ({ children }) => {
   const axiosPublic = useAxiosPublic();
 
   const [user, setUser] = useState(null);
-  // console.log(user);
+  console.log(user);
 
   const [loading, setLoading] = useState(true);
 
@@ -44,9 +44,9 @@ const AuthProviders = ({ children }) => {
       const user = result.user;
 
       const userData = {
+        name: user.displayName,
         email: user.email,
         role: "buyer", 
-        status: "approved",
         cart: [],
         wishlist: [], 
       };

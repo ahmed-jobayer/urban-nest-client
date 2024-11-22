@@ -25,15 +25,15 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    // console.log(data)
+    console.log(data)
 
+    const name = data.name;
     const email = data.email;
     const role = data.role;
-    const status = role === "buyer" ? "approved" : "pending";
     const cart = [];
     const wishlist = [];
 
-    const userData = { email, role, status, cart, wishlist };
+    const userData = {name, email, role, cart, wishlist  };
 
     CreateUser(email, data.password).then(() => {
       axiosPublic.post("/user", userData).then((res) => {
@@ -78,6 +78,21 @@ const Register = () => {
             Register in <span className="font-bold">Urban</span>Nest
           </h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* name  */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Name
+              </label>
+              <input
+                type="text"
+                placeholder="Enter your Name"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                {...register("name", { required: "Name is required" })}
+              />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name.message}</p>
+              )}
+            </div>
             {/* email  */}
             <div>
               <label className="block text-sm font-medium text-gray-700">

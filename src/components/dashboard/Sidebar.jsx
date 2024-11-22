@@ -4,8 +4,10 @@ import { GrCart, GrOverview } from "react-icons/gr";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdManageAccounts, MdOutlineInventory2 } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useEffect, useState } from "react";
 
 const userRoutes = [
   {
@@ -37,7 +39,6 @@ const sellerRoutes = [
   },
 ];
 
-
 const adminRoutes = [
   {
     id: 1,
@@ -48,8 +49,30 @@ const adminRoutes = [
 ];
 
 const Sidebar = () => {
-  
-    const {  LogOut } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const [userData, setUserData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+  const { LogOut } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(true);
+
+    const fetchUser = async () => {
+      axiosPublic.get(`/user/${user.email}`).then((res) => {
+        setUserData(res.data);
+        setLoading(false);
+        console.log(res.data);
+      });
+    };
+    fetchUser();
+  }, [axiosPublic, user.email]);
+
+  const handleLogout = () => {
+    LogOut();
+    navigate("/login");
+  };
 
   // console.log('user from db', userData)
 
@@ -59,37 +82,59 @@ const Sidebar = () => {
         <span className="font-bold">Urban</span>Nest
       </h1>
       <ul className="flex flex-col gap-4 h-full ">
-        <li className="btn btn-outline  bg-[#5E5449] text-white border-none">
+        <NavLink
+          to="/"
+          className="btn btn-outline bg-[#5E5449] text-white border-none flex items-center"
+        >
           <IoHomeOutline className="text-xl" />
-          <NavLink to="/"> Home</NavLink>
-        </li>
-        <li className="btn btn-outline  bg-[#5E5449] text-white border-none">
+          <span>Home</span>
+        </NavLink>
+        <NavLink
+          to="/dashboard/overview"
+          className="btn btn-outline bg-[#5E5449] text-white border-none flex items-center"
+        >
           <GrOverview className="text-xl" />
-          <NavLink to="/dashboard/overview">Overview</NavLink>
-        </li>
-        {userData.role === "seller" &&
+          <span>Overview</span>
+        </NavLink>
+
+        {userData.role === "buyer" &&
           userRoutes.map((route) => (
-            <li key={route.id} className="btn btn-outline  bg-[#5E5449] text-white border-none">
+            <NavLink
+              key={route.id}
+              to={route.route}
+              className="btn btn-outline bg-[#5E5449] text-white border-none flex items-center"
+            >
               {route.icon}
-              <NavLink to={route.route}> {route.title}</NavLink>
-            </li>
+              <span>{route.title}</span>
+            </NavLink>
           ))}
         {userData.role === "seller" &&
           sellerRoutes.map((route) => (
-            <li key={route.id} className="btn btn-outline  bg-[#5E5449] text-white border-none">
+            <NavLink
+              key={route.id}
+              to={route.route}
+              className="btn btn-outline bg-[#5E5449] text-white border-none flex items-center"
+            >
               {route.icon}
-              <NavLink to={route.route}> {route.title}</NavLink>
-            </li>
+              <span>{route.title}</span>
+            </NavLink>
           ))}
         {userData.role === "admin" &&
           adminRoutes.map((route) => (
-            <li key={route.id} className="btn btn-outline  bg-[#5E5449] text-white border-none">
+            <NavLink
+              key={route.id}
+              to={route.route}
+              className="btn btn-outline bg-[#5E5449] text-white border-none flex items-center"
+            >
               {route.icon}
-              <NavLink to={route.route}> {route.title}</NavLink>
-            </li>
+              <span>{route.title}</span>
+            </NavLink>
           ))}
 
-        <li className="btn btn-outline  bg-[#5E5449] text-white border-none" onClick={() => LogOut()}>
+        <li
+          className="btn btn-outline  bg-[#5E5449] text-white border-none"
+          onClick={handleLogout}
+        >
           <BiLogOut className="text-xl" />
           <button>Logout</button>
         </li>

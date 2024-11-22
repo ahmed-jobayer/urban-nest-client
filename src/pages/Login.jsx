@@ -3,10 +3,12 @@ import GoogleLogin from "../components/GoogleLogin";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../hooks/useAuth";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-
-  const {Login} = useAuth()
+  const { Login } = useAuth();
+  const [showPassword, setShowPassword] = useState();
 
   const {
     register,
@@ -65,12 +67,12 @@ const Login = () => {
             </div>
 
             {/* password  */}
-            <div>
+            <div className="relative">
               <label className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword? 'text' : 'password'}
                 placeholder="Enter your password"
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 {...register("password", {
@@ -81,6 +83,13 @@ const Login = () => {
                   },
                 })}
               />
+              <button
+                type="button"
+                className="absolute right-3 top-10 text-[#5E5449] focus:outline-none"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
               {errors.password && (
                 <p className="text-red-500 text-sm">
                   {errors.password.message}
