@@ -2,8 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/GoogleLogin";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+
+  const {Login} = useAuth()
+
   const {
     register,
     handleSubmit,
@@ -12,9 +16,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
-    // Login(data.email, data.password);
-    // navigate("/");
+    // console.log(data);
+    Login(data.email, data.password);
+    navigate("/");
   };
 
   return (

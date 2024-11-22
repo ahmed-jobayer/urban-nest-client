@@ -2,15 +2,20 @@
 import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth/web-extension";
-import axios from "axios";
 import { app } from "../firebase-config/firebase";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
-const AuthContext = createContext(null);
+// eslint-disable-next-line react-refresh/only-export-components
+export const AuthContext = createContext(null);
 
 const auth = getAuth(app );
 
 const AuthProviders = ({ children }) => {
+
+    const axiosPublic = useAxiosPublic()
+
   const [user, setUser] = useState(null);
+  console.log(user)
 
   const [loading, setLoading] = useState(true);
 
@@ -36,8 +41,8 @@ const AuthProviders = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        axios
-          .post(`http://localhost:4000/authentication`, {
+        axiosPublic
+          .post(`/authentication`, {
             email: currentUser.email,
           })
           .then((data) => {
@@ -54,7 +59,7 @@ const AuthProviders = ({ children }) => {
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

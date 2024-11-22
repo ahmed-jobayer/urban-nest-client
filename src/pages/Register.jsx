@@ -1,11 +1,17 @@
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import GoogleLogin from "../components/GoogleLogin";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../hooks/useAuth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Register = () => {
+
+  const axiosPublic = useAxiosPublic()
+
+  const {CreateUser} =useAuth()
+
   const {
     register,
     handleSubmit,
@@ -24,22 +30,21 @@ const Register = () => {
     const wishlist = [];
 
     const userData = { email, role, status, wishlist };
-    console.log(userData)
 
-    // CreateUser(email, data.password).then(() => {
-    //   axios.post("http://localhost:4000/users", userData).then((res) => {
-    //     if (res.data.insertedId) {
-    //       Swal.fire({
-    //         position: "center",
-    //         icon: "success",
-    //         title: "Registration successful",
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
-    //       navigate("/");
-    //     }
-    //   });
-    // });
+    CreateUser(email, data.password).then(() => {
+      axiosPublic.post("/user", userData).then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Registration successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        }
+      });
+    });
   };
 
   return (
