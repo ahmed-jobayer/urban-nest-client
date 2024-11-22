@@ -1,21 +1,27 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import { app } from "../firebase-config/firebase";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 
-const auth = getAuth(app );
+const auth = getAuth(app);
 
 const AuthProviders = ({ children }) => {
-
-    const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
 
   const [user, setUser] = useState(null);
-  console.log(user)
+  // console.log(user);
 
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +40,23 @@ const AuthProviders = ({ children }) => {
   };
 
   const GoogleLogin = () => {
-    return signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider).then((result) => {
+      const user = result.user;
+
+      const userData = {
+        email: user.email,
+        role: "buyer", 
+        status: "approved",
+        cart: [],
+        wishlist: [], 
+      };
+
+      return axiosPublic.post("/user", userData).then((res) => {
+        if (res.data.insertedId) {
+          console.log("user stored in the database");
+        }
+      });
+    });
   };
 
   useEffect(() => {
@@ -46,8 +68,9 @@ const AuthProviders = ({ children }) => {
             email: currentUser.email,
           })
           .then((data) => {
+            // console.log(data.data)
             if (data.data) {
-              localStorage.setItem("access-token", data?.data?.token);
+              localStorage.setItem("access-token", data?.data);
               setLoading(false);
             }
           });

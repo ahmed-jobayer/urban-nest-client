@@ -4,7 +4,7 @@ const Loader = () => {
     return (
         <div className="min-h-screen w-full flex justify-center items-center">
       <HashLoader
-        color={"#852f2f"}
+        color={"#4A3137"}
         loading={true}
         cssOverride={""}
         size={150}

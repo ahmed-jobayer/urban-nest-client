@@ -22,11 +22,11 @@ const FilterBar = ({
             onChange={(e) => setBrand(e.target.value)}
           >
             <option>Brand</option>
-            {/* {uniqueBrand.map((brand) => (
+            {uniqueBrand.map((brand) => (
               <option key={brand} value={brand}>
                 {brand}
               </option>
-            ))} */}
+            ))}
           </select>
         </div>
         <div>
@@ -35,11 +35,11 @@ const FilterBar = ({
             onChange={(e) => setCategory(e.target.value)}
           >
             <option> Category </option>
-            {/* {uniqueCategory.map((category) => (
+            {uniqueCategory.map((category) => (
               <option value={category} key={category}>
                 {category}
               </option>
-            ))} */}
+            ))}
           </select>
         </div>
       </div>

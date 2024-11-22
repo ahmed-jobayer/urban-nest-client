@@ -15,8 +15,8 @@ const Hero = () => {
             <h1 className="mb-5 text-5xl font-bold w-3/5 leading-relaxed">
               Converting a home into a better place
             </h1>
-            <Link to='/products'>
-              <button className=" btn-outline bg-[#5E5449] hover:bg-[#4A3137] p-2 rounded-3xl  text-white  w-24 ">
+            <Link className="w-24" to='/products'>
+              <button className=" btn-outline bg-[#5E5449] hover:bg-[#4A3137] p-2 rounded-3xl  text-white   ">
                 Shop Now
               </button>
             </Link>

@@ -5,6 +5,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdManageAccounts, MdOutlineInventory2 } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const userRoutes = [
   {
@@ -47,10 +48,10 @@ const adminRoutes = [
 ];
 
 const Sidebar = () => {
-  //   const userData = useUserData();
-  //   const { LogOut } = useAuth();
-  const userData = {role: 'seller'}
-  const userDataA = {role: 'admin'}
+  
+    const {  LogOut } = useAuth();
+
+  // console.log('user from db', userData)
 
   return (
     <div className="bg-[#4A3137] border-r-2 border-black min-h-screen px-8 py-16 text-white">
@@ -80,7 +81,7 @@ const Sidebar = () => {
               <NavLink to={route.route}> {route.title}</NavLink>
             </li>
           ))}
-        {userDataA.role === "admin" &&
+        {userData.role === "admin" &&
           adminRoutes.map((route) => (
             <li key={route.id} className="btn btn-outline  bg-[#5E5449] text-white border-none">
               {route.icon}

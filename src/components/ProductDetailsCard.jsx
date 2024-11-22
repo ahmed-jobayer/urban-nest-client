@@ -1,13 +1,25 @@
+import { useLoaderData } from "react-router-dom";
+import Loader from "../pages/Loader";
+
 const ProductDetailsCard = () => {
+
+  const product = useLoaderData()
+  // console.log(product)
+
+
+  if (!product) {
+    return <Loader></Loader>
+  }
+
   return (
-    <div className="bg-[#EDE9E9]">
-      <div className="container mx-auto py-12 px-4">
+    <div className="bg-[#EDE9E9] ">
+      <div className="container mx-auto py-12 px-4 ">
         <div className="grid grid-cols-12 gap-6 lg:gap-12">
           {/* image */}
           <div className="col-span-12 lg:col-span-7 order-1 lg:order-none">
             <div className="w-full h-auto border rounded-lg overflow-hidden">
               <img
-                src="/register.avif"
+                src={product.image}
                 alt="Product"
                 className="object-cover w-full h-full"
               />
@@ -19,22 +31,22 @@ const ProductDetailsCard = () => {
             {/* brand */}
             <div>
               <h3 className="text-gray-500 text-sm uppercase tracking-wider">
-                Brand Name
+                {product.brand}
               </h3>
-              <h1 className="text-2xl font-bold">Product Title</h1>
+              <h1 className="text-2xl font-bold">{product.title}</h1>
             </div>
 
             {/* price */}
             <div>
-              <p className="text-lg text-[#4A3137] font-semibold">$99.99</p>
+              <p className="text-lg text-[#4A3137] font-semibold">${product.price}</p>
             </div>
 
             {/* description */}
             <div>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                {
+                  product.description
+                }
               </p>
             </div>
 
