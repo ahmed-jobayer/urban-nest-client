@@ -47,6 +47,7 @@ const AddProducts = () => {
       })
       .then((res) => {
         if (res.data.insertedId) {
+          console.log(res.data)
           Swal.fire({
             position: "center",
             icon: "success",
