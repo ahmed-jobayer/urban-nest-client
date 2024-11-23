@@ -6,8 +6,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { MdManageAccounts, MdOutlineInventory2 } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useEffect, useState } from "react";
+import useUserData from "../../hooks/useUserData";
 
 const userRoutes = [
   {
@@ -17,7 +16,7 @@ const userRoutes = [
     icon: <FiHeart className="text-xl" />,
   },
   {
-    id: 1,
+    id: 2,
     title: "Cart",
     route: "/dashboard/cart",
     icon: <GrCart className="text-xl" />,
@@ -32,7 +31,7 @@ const sellerRoutes = [
     icon: <MdOutlineInventory2 className="text-xl" />,
   },
   {
-    id: 1,
+    id: 2,
     title: "Add Products",
     route: "/dashboard/add-products",
     icon: <IoMdAddCircleOutline className="text-xl" />,
@@ -49,32 +48,18 @@ const adminRoutes = [
 ];
 
 const Sidebar = () => {
-  const axiosPublic = useAxiosPublic();
-  const [userData, setUserData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const { user } = useAuth();
   const { LogOut } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(true);
-
-    const fetchUser = async () => {
-      axiosPublic.get(`/user/${user.email}`).then((res) => {
-        setUserData(res.data);
-        setLoading(false);
-        console.log(res.data);
-      });
-    };
-    fetchUser();
-  }, [axiosPublic, user.email]);
+  const userData = useUserData()
 
   const handleLogout = () => {
     LogOut();
     navigate("/login");
   };
 
-  // console.log('user from db', userData)
+
+ 
 
   return (
     <div className="bg-[#4A3137] border-r-2 border-black min-h-screen px-8 py-16 text-white">

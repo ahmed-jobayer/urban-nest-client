@@ -15,6 +15,8 @@ import Cart from "../pages/dashboard/user/Cart";
 import MyProducts from "../pages/dashboard/seller/MyProducts";
 import AddProducts from "../pages/dashboard/seller/AddProducts";
 import PrivateRoutes from "./private/PrivateRoutes";
+import SellerRoutes from "./private/SellerRoutes";
+import AdminRoutes from "./private/AdminRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -70,15 +72,15 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/my-products',
-        element: <MyProducts/>
+        element: <SellerRoutes><MyProducts/></SellerRoutes>
       },
       {
         path: '/dashboard/add-products',
-        element: <AddProducts/>
+        element: <SellerRoutes><AddProducts/></SellerRoutes>
       },
       {
         path: '/dashboard/manage-users',
-        element: <ManageUsers/>
+        element: <AdminRoutes><ManageUsers/></AdminRoutes>
       },
     ]
   }

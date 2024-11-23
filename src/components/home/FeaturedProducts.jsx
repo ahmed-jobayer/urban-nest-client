@@ -15,7 +15,7 @@ const FeaturedProducts = () => {
       axiosPublic.get(`/all-products?page=1&limit=6`).then((res) => {
         setProducts(res.data.products);
         setLoading(false);
-        console.log(res.data);
+        // console.log(res.data);
       });
     };
     fetch();
