@@ -18,6 +18,7 @@ import PrivateRoutes from "./private/PrivateRoutes";
 import SellerRoutes from "./private/SellerRoutes";
 import AdminRoutes from "./private/AdminRoutes";
 import BuyerRoute from "./private/BuyerRoute";
+import UpdateProduct from "../pages/dashboard/seller/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,11 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/my-products',
         element: <SellerRoutes><MyProducts/></SellerRoutes>
+      },
+      {
+        path: "/dashboard/product/:id",
+        element:<SellerRoutes><UpdateProduct/></SellerRoutes>,
+        loader:({params}) => fetch(`http://localhost:3000/product/${params.id}`)
       },
       {
         path: '/dashboard/add-products',

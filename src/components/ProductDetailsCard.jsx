@@ -1,14 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import Loader from "../pages/Loader";
+import useUserData from "../hooks/useUserData";
 
 const ProductDetailsCard = () => {
-
-  const product = useLoaderData()
+  const product = useLoaderData();
+  const user = useUserData();
   // console.log(product)
 
-
   if (!product) {
-    return <Loader></Loader>
+    return <Loader></Loader>;
   }
 
   return (
@@ -38,25 +38,29 @@ const ProductDetailsCard = () => {
 
             {/* price */}
             <div>
-              <p className="text-lg text-[#4A3137] font-semibold">${product.price}</p>
+              <p className="text-lg text-[#4A3137] font-semibold">
+                ${product.price}
+              </p>
             </div>
 
             {/* description */}
             <div>
               <p className="text-gray-600 text-sm leading-relaxed">
-                {
-                  product.description
-                }
+                {product.description}
               </p>
             </div>
 
             {/* buttons */}
-            <div className="flex justify-between gap-4">
-              <button className="w-1/2 btn btn-sm text-white bg-[#5E5449] hover:bg-[#4A3137] border-none">Add to Cart</button>
-              <button className="w-1/2 btn btn-sm text-white bg-[#4A3137] hover:bg-[#5E5449] border-none">
-                Add to Wishlist
-              </button>
-            </div>
+            {user.role === "buyer" && (
+              <div className="flex justify-between gap-4">
+                <button className="w-1/2 btn btn-sm text-white bg-[#5E5449] hover:bg-[#4A3137] border-none">
+                  Add to Cart
+                </button>
+                <button className="w-1/2 btn btn-sm text-white bg-[#4A3137] hover:bg-[#5E5449] border-none">
+                  Add to Wishlist
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

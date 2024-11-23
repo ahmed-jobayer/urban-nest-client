@@ -2,7 +2,7 @@ const Testimonials = () => {
   return (
     <div className="mt-10 ">
       <h2 className="text-3xl border-b-2">Testimonials</h2>
-      <div className="my-4 grid grid-cols-3 gap-10">
+      <div className="my-4 grid lg:grid-cols-3 gap-10">
         <div className="p-7 flex flex-col gap-6 bg-[#ede9e9] rounded-md">
           <div className="flex justify-between">
             <div className="rating">

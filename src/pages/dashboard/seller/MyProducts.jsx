@@ -48,25 +48,6 @@ const MyProducts = () => {
       refetch();
     }
   };
-  const handleUpdate = async (id) => {
-    // console.log(id);
-    const res = await axiosPublic.patch(`//${id}`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(res.data);
-    if (res?.data?.modifiedCount) {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "User Role Updated to Seller Successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      refetch();
-    }
-  };
 
   if (isLoading) {
     return <Loader />;
@@ -82,8 +63,7 @@ const MyProducts = () => {
           <SellerProductCard 
           key={product._id} 
           product={product}
-          handleDelete={handleDelete}
-          handleUpdate={handleUpdate}  />
+          handleDelete={handleDelete} />
         ))}
       </div>
     </div>

@@ -27,7 +27,7 @@ const FeaturedProducts = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="my-4 grid grid-cols-3 gap-16">
+        <div className="my-4 grid lg:grid-cols-3 gap-16">
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}

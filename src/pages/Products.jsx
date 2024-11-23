@@ -20,7 +20,8 @@ const Products = () => {
   const [uniqueCategory, setUniqueCategory] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  console.log(sort)
+  const [showFilter, setShowFilter] = useState(false);
+  // console.log(sort)
 
   useEffect(() => {
     setLoading(true);
@@ -65,60 +66,108 @@ const Products = () => {
   };
 
   return (
-    <div className="bg-[#EDE9E9] min-h-screen ">
-      <Helmet>
-        <title>Products - UrbanNest</title>
-      </Helmet>
-      {/* container */}
-      <div className="container mx-auto ">
-        <h1 className="py-6 text-center text-3xl">All Products</h1>
-        {/* content and filter bar */}
-        <div className="grid grid-cols-12 gap-4 py-8">
-          {/* filterbar */}
-          <div className="col-span-2 ">
-            <FilterBar 
+    <div className="bg-[#EDE9E9] min-h-screen">
+    <Helmet>
+      <title>Products - UrbanNest</title>
+    </Helmet>
+ 
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 className="py-6 text-center text-2xl md:text-3xl">All Products</h1>
+
+      {/* filter  for mobile */}
+      <div className="lg:hidden flex justify-end mb-4">
+        <button
+          className="btn btn-outline bg-[#5E5449] text-white hover:bg-[#4A3137]"
+          onClick={() => setShowFilter(true)}
+        >
+          Filter
+        </button>
+      </div>
+
+  
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-8">
+
+        <div className="hidden lg:block lg:col-span-3">
+          <FilterBar
             setBrand={setBrand}
             setCategory={setCategory}
             handleReset={handleReset}
             uniqueBrand={uniqueBrand}
             uniqueCategory={uniqueCategory}
-            />
+          />
+        </div>
+
+        {/* product  */}
+        <div className="lg:col-span-9 col-span-1">
+          {/* Search Bar Price Sorting */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <SearchBar handleSearch={handleSearch} />
+            <SortByPrice setSort={setSort} />
           </div>
-          {/* product, searchbar and price sorting */}
-          <div className="col-span-10 ">
-            {/* searchbar and price sorting */}
-            <div className="flex  justify-between">
-              <SearchBar handleSearch={handleSearch} />
-              <SortByPrice setSort={setSort}/>
+          {/* products */}
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
             </div>
-            {/* all products */}
-            {loading ? (
-              <Loader />
-            ) : (
-              <div className="min-h-screen mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4 ">
-                {products.map((product) => (
-                    <ProductCard key={product._id} product={product} />
-                  ))}
-              </div>
-            )}
-             <div className="flex justify-center items-center gap-2 my-8 w-full">
-            <button disabled={ page ===1} className="btn btn-outline text-xl" onClick={() => handlePageChange(page - 1)}>
+          )}
+          {/* pagination */}
+          <div className="flex justify-center items-center gap-4 my-8">
+            <button
+              disabled={page === 1}
+              className="btn btn-outline text-xl disabled:opacity-50"
+              onClick={() => handlePageChange(page - 1)}
+            >
               <FaRegArrowAltCircleLeft />
             </button>
             <p>
               Page {page} of {totalPages}
             </p>
-            <button className="btn btn-outline text-xl" onClick={() => handlePageChange(page + 1)}>
+            <button
+              className="btn btn-outline text-xl"
+              onClick={() => handlePageChange(page + 1)}
+            >
               <FaRegArrowAltCircleRight />
             </button>
           </div>
-          </div>
-
-         
-
         </div>
       </div>
     </div>
+
+    {/* mobile filter */}
+    {showFilter && (
+      <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+        <div className="bg-white w-11/12 sm:w-3/4 p-6 rounded-lg shadow-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold">Filters</h2>
+            <button
+              className="text-red-500 font-bold"
+              onClick={() => setShowFilter(false)}
+            >
+              Close
+            </button>
+          </div>
+          <FilterBar
+            setBrand={setBrand}
+            setCategory={setCategory}
+            handleReset={handleReset}
+            uniqueBrand={uniqueBrand}
+            uniqueCategory={uniqueCategory}
+          />
+          <button
+            className="btn btn-outline bg-[#5E5449] text-white hover:bg-[#4A3137] w-full mt-4"
+            onClick={() => setShowFilter(false)}
+          >
+            Apply Filters
+          </button>
+        </div>
+      </div>
+    )}
+  </div>
+  
   );
 };
 
