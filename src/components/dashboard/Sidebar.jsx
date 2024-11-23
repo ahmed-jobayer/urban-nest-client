@@ -52,6 +52,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const userData = useUserData()
+  // console.log(userData)
 
   const handleLogout = () => {
     LogOut();

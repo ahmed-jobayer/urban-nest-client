@@ -1,13 +1,16 @@
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const AddProducts = () => {
-  // const { user } = useAuth();
+  const { user } = useAuth()
+  const axiosPublic = useAxiosPublic()
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -36,10 +39,10 @@ const AddProducts = () => {
     const token = localStorage.getItem("access-token");
     console.log(product)
 
-    axios
-      .post("http://localhost:4000/add-products", product, {
+    axiosPublic
+      .post("/add-product", product, {
         headers: {
-          authorization: `Bearer ${token}`,
+          authorization: `Bearer ${token}`, 
         },
       })
       .then((res) => {
@@ -51,6 +54,7 @@ const AddProducts = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          reset()
         }
       });
   };
