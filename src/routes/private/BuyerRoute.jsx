@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useUserData from "../../hooks/useUserData";
 import Loader from "../../pages/Loader";
 
-const AdminRoutes = ({children}) => {
+const BuyerRoute = ({children}) => {
     const {user, loading} = useAuth()
     const userData = useUserData()
     const location = useLocation()
@@ -12,11 +12,12 @@ const AdminRoutes = ({children}) => {
         return <Loader/>
     }
 
-if (user && userData.role === "admin") {
+if (user && userData.role === "buyer") {
     return children
 }
 
     return <Navigate to='/login' state={{from: location}}/>
 };
 
-export default AdminRoutes;
+
+export default BuyerRoute;
