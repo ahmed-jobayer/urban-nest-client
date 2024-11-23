@@ -20,10 +20,9 @@ const auth = getAuth(app);
 const AuthProviders = ({ children }) => {
   const axiosPublic = useAxiosPublic();
 
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   console.log(user);
-
-  const [loading, setLoading] = useState(true);
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -46,9 +45,9 @@ const AuthProviders = ({ children }) => {
       const userData = {
         name: user.displayName,
         email: user.email,
-        role: "buyer", 
+        role: "buyer",
         cart: [],
-        wishlist: [], 
+        wishlist: [],
       };
 
       return axiosPublic.post("/user", userData).then((res) => {

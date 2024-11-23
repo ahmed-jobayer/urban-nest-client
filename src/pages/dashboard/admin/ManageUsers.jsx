@@ -37,9 +37,20 @@ const ManageUsers = () => {
       }
    
   };
-  const handleMakeSeller = (id) => {
-    console.log(id);
-    refetch();
+  const handleMakeSeller = async (id) => {
+    // console.log(id);
+    const res = await axiosPublic.patch(`/makeSeller/${id}`);
+    console.log(res.data)
+    if (res?.data?.modifiedCount) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User Role Updated to Seller Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      }
   };
 
   if (isLoading) {
@@ -73,10 +84,13 @@ const ManageUsers = () => {
               <td>{user.name}</td>
               <td>{user.role}</td>
               <td className=" text-xl pl-8 ">
-                <GiProgression
-                  className="hover:cursor-pointer"
-                  onClick={() => handleMakeSeller(user._id)}
-                />
+                {
+                    user.role === 'buyer' && <GiProgression
+                    className="hover:cursor-pointer"
+                    onClick={() => handleMakeSeller(user._id)}
+                  /> 
+                }
+                
               </td>
 
               <td className=" text-xl pl-8">
